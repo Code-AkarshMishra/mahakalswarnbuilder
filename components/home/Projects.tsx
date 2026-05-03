@@ -23,15 +23,21 @@ export default function Projects() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
                     {projects.map((p, i) => (
-                        <motion.div key={i} whileHover={{ y: -10 }} className="group cursor-pointer">
-                            {/* FIX: Removed fixed h-[400px], used aspect ratio to prevent cropping on mobile */}
-                            <div className="relative aspect-[4/3] md:aspect-video lg:h-[400px] overflow-hidden mb-6 md:mb-8 shadow-[0_10px_30px_rgba(0,0,0,0.2)] border-[8px] md:border-[10px] border-white rounded-xl">
+                        <motion.div key={i} whileHover={{ y: -8 }} className="group cursor-pointer">
+
+                            {/* FIX: Set a perfect aspect ratio so the image fits properly and doesn't stretch vertically */}
+                            <div className="relative aspect-[4/3] md:aspect-[3/2] overflow-hidden mb-6 md:mb-8 shadow-[0_10px_30px_rgba(0,0,0,0.15)] border-[6px] md:border-[10px] border-white rounded-xl">
                                 <Image
-                                    src={p.image} alt={p.title} fill sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                                    src={p.image}
+                                    alt={p.title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    // FIX: Removed "grayscale" classes. Now it's always colorful. Kept a slight zoom on hover.
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-[#001F3F]/20 group-hover:bg-transparent transition-all" />
+                                <div className="absolute inset-0 bg-[#001F3F]/5 group-hover:bg-transparent transition-all" />
                             </div>
+
                             <div className="flex justify-between items-center px-2 md:px-4">
                                 <div>
                                     <h3 className="font-serif text-2xl md:text-3xl text-[#001F3F] font-black">{p.title}</h3>
@@ -39,6 +45,7 @@ export default function Projects() {
                                 </div>
                                 <div className="w-8 md:w-12 h-1 bg-[#D4AF37] group-hover:w-16 md:group-hover:w-24 transition-all duration-500" />
                             </div>
+
                         </motion.div>
                     ))}
                 </div>
