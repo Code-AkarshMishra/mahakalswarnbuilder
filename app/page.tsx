@@ -28,8 +28,17 @@ export default function Home() {
 
       {/* FOUNDER'S VISION SECTION */}
       <section id="about" className="py-20 md:py-32 bg-[#FDFBF7]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="h-[3px] w-16 md:w-24 bg-[#D4AF37] mx-auto mb-8 md:mb-10 shadow-[0_0_10px_rgba(212,175,55,0.6)]" />
+        <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
+
+          {/* CIRCULAR PHOTO WITH BOLD GOLDEN BORDER */}
+          <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full border-[4px] md:border-[8px] border-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)] mb-8 md:mb-10 overflow-hidden mx-auto">
+            <img
+              src="/images/founder.png"
+              alt="Swarn Kumar Tripathi"
+              className="w-full h-full object-cover scale-105"
+            />
+          </div>
+
           <p className="text-2xl md:text-4xl font-serif text-[#001F3F] italic leading-relaxed mb-8 md:mb-10">
             "As a new-age developer, we don't just build homes; we curate sanctuaries. By blending modern AI tracking with ancient Vastu principles, we ensure zero compromise on quality."
           </p>
