@@ -6,7 +6,7 @@ const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" })
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mahakalswarnbuilder.com'),
+  metadataBase: new URL('https://mahakalswarnbuilder.vercel.app/'),
   title: "Mahakal Swarn Builder | Real Estate Builder ",
   description: "Founded by Swarn Kumar Tripathi. Mahakal Swarn Builder is North India's fastest-growing real estate startup delivering premium, Vastu-compliant residential and commercial properties at affordable prices.",
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mahakal Swarn Builder | Real Estate Builder ",
     description: "Delivering 3D-precision luxury residencies across Lucknow, Delhi, and Noida.",
-    url: 'https://mahakalswarnbuilder.com',
+    url: 'https://mahakalswarnbuilder.vercel.app/',
     siteName: 'Mahakal Swarn Builder',
     locale: 'en_IN',
     type: 'website',
