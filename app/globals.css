@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-pure-gold: #FFD700;
+  --color-gold-prime: #D4AF37;
+  --color-navy-deep: #001F3F;
+  /* Corrected to Deep Corporate Blue */
+  --color-cream-dark: #FDFBF7;
+  /* Cleaner cream */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer components {
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Continuous Logo Glow */
+  .animate-gold-glow {
+    animation: continuous-glow 4s ease-in-out infinite;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @keyframes continuous-glow {
+
+    0%,
+    100% {
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+    }
+
+    50% {
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9));
+    }
+  }
+
+  /* 3D Perspective Context */
+  .perspective-container {
+    perspective: 2000px;
+  }
+
+  .card-3d {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+  }
+
+  /* Heritage Background */
+  .bg-heritage-dark {
+    background-color: var(--color-cream-dark);
+    background-image: url("https://www.transparenttextures.com/patterns/silk.png");
+  }
+
+  /* Nav Underline Fill */
+  .nav-fill-link {
+    @apply relative text-black font-black uppercase text-sm tracking-widest transition-colors duration-300;
+  }
+
+  .nav-fill-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-[3px] bg-[#D4AF37] transition-all duration-500;
+  }
+
+  .nav-fill-link:hover::after {
+    @apply w-full;
+    box-shadow: 0 0 10px #D4AF37;
+  }
 }
