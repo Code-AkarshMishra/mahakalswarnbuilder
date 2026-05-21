@@ -17,7 +17,7 @@ export default function Contact() {
                             <div className="p-3 bg-premium-goldLight rounded-full text-premium-gold">
                                 <MapPin size={24} />
                             </div>
-                            <p className="text-lg">Gomti Nagar, Viraj Khand - 5, 6/58, Lucknow</p>
+                            <p className="text-lg">Gomti Nagar, Viraj Khand - Lucknow</p>
                         </div>
                         <div className="flex gap-4 pt-6">
                             <a href="https://wa.me/918707790653" className="btn-premium flex items-center gap-2">

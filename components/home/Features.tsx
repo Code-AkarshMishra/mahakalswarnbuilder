@@ -1,15 +1,16 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShieldCheck, Building2, Home, Hammer, Ruler } from "lucide-react";
+import { ShieldCheck, Building2, Home, Hammer, Ruler, HardHat } from "lucide-react";
 import React from 'react';
 
 const items = [
-    { title: "Residential Luxury", Icon: Home, desc: "Bespoke Vastu Villas" },
-    { title: "Commercial Hubs", Icon: Building2, desc: "Prime Retail Spaces" },
-    { title: "Civil Consulting", Icon: Ruler, desc: "Structural Excellence" },
-    { title: "Smart Security", Icon: ShieldCheck, desc: "AI-Safe Protocols" }
+    { title: "Residential ", Icon: Home, desc: "Vastu-compliant luxury villas in Lucknow and Noida." },
+    { title: "Commercial", Icon: Building2, desc: "Modern retail spaces and corporate hubs in Delhi-NCR." },
+    { title: "Consultancy", Icon: HardHat, desc: "Structural auditing and premium material sourcing." },
+    { title: "Quality and Security", Icon: ShieldCheck, desc: "Grade-A steel and seismic-zone compliant architecture & AI-Safe Protocols" }
 ];
+
 
 export default function Features() {
     const checklist = [

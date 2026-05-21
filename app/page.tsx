@@ -1,7 +1,9 @@
 import Preloader from "@/components/shared/Preloader";
 import Navbar from "@/components/shared/Navbar";
 import Hero from "@/components/home/Hero";
+import CostDashboard from "@/components/home/CostDashboard";
 import Features from "@/components/home/Features";
+
 import Projects from "@/components/home/Projects";
 import ChatAssistant from "@/components/shared/ChatAssistant";
 import Footer from "@/components/shared/Footer";
@@ -12,7 +14,9 @@ export default function Home() {
       <Preloader />
       <Navbar />
       <Hero />
-
+      <section className="py-16 bg-gray-50" id="calculator">
+        <CostDashboard />
+      </section>
       {/* STARTUP-READY TRUST SIGNALS */}
       <section className="py-12 md:py-16 bg-[#FDFBF7] border-y border-[#D4AF37]/20 shadow-sm z-10 relative">
         <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -22,6 +26,8 @@ export default function Home() {
           <StatBox val="RERA" label="Compliance Ready" />
         </div>
       </section>
+
+
 
       <Features />
       <Projects />
