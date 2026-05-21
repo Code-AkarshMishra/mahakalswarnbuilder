@@ -75,10 +75,10 @@ export default function Hero() {
                     // FIX: Form paddings reduced for mobile, bg changed to cream #FDFBF7
                     className="bg-[#FDFBF7]/95 p-5 sm:p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-t-[10px] md:border-t-[20px] border-pure-gold w-full max-w-md mx-auto lg:max-w-full rounded-b-xl lg:rounded-none"
                 >
-                    <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-navy-deep mb-5 md:mb-8 font-black text-center lg:text-left">Startup Enquiry Portal</h3>
+                    <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-navy-deep mb-5 md:mb-8 font-black text-center lg:text-left">Enquiry</h3>
                     <form onSubmit={handleEnquiry} className="grid grid-cols-1 gap-4 md:gap-6">
-                        <input name="name" required placeholder="Investor / Client Name" className="p-3 md:p-4 border-b-2 border-gold-soft outline-none focus:border-pure-gold bg-transparent text-sm md:text-lg font-bold text-navy-deep placeholder-gray-500" />
-                        <input name="phone" required type="tel" placeholder="Primary Contact Number" className="p-3 md:p-4 border-b-2 border-gold-soft outline-none focus:border-pure-gold bg-transparent text-sm md:text-lg font-bold text-navy-deep placeholder-gray-500" />
+                        <input name="name" required placeholder="Client Name" className="p-3 md:p-4 border-b-2 border-gold-soft outline-none focus:border-pure-gold bg-transparent text-sm md:text-lg font-bold text-navy-deep placeholder-gray-500" />
+                        <input name="phone" required type="tel" placeholder="Contact Number" className="p-3 md:p-4 border-b-2 border-gold-soft outline-none focus:border-pure-gold bg-transparent text-sm md:text-lg font-bold text-navy-deep placeholder-gray-500" />
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                             <select name="projectType" className="p-3 md:p-4 border-b-2 border-gold-soft outline-none bg-transparent font-bold text-navy-deep text-sm md:text-base">
