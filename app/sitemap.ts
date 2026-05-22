@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mahakalswarnbuilder.com'; // Replace with actual domain
+  const baseUrl = 'https://mahakalswarnbuilder.in'; // Replace with actual domain
 
   return [
     {
