@@ -16,12 +16,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.mahakalswarnbuilder.in"),
 
   title: {
-    default: "Mahakal Swarn Builder | Real Estate Builder",
+
+    default: "Mahakal Swarn Builders | Real Estate Builder ",
     template: "%s | Mahakal Swarn Builder",
   },
 
   description:
     "Founded by Swarn Kumar Tripathi. Mahakal Swarn Builder is North India's fastest-growing real estate startup delivering premium, Vastu-compliant residential and commercial properties at affordable prices.",
+
+  // 🔴 YAHAN FAVICON ADD KIYA GAYA HAI 
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 
   keywords: [
     "Mahakal Swarn Builder",
@@ -53,7 +61,8 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Mahakal Swarn Builder | Real Estate Builder",
+    // 🔴 WhatsApp/Facebook par link share karne par ye title dikhega
+    title: "Mahakal Swarn Builders | Premium Construction",
     description:
       "Delivering premium luxury residencies and commercial projects across Lucknow, Noida, and Delhi NCR.",
 
@@ -68,7 +77,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Mahakal Swarn Builder",
+    title: "Mahakal Swarn Builders",
     description:
       "Premium real estate and luxury construction company.",
   },
