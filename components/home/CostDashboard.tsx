@@ -10,18 +10,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Base Rates (Moderate)
 const baseRates = [
-    { resource: "Cement", rate: 271.90 },
-    { resource: "Steel", rate: 257.50 },
-    { resource: "Bricks", rate: 233.00 },
-    { resource: "Aggregate", rate: 158.90 },
-    { resource: "Sand", rate: 178.00 },
-    { resource: "Flooring", rate: 189.00 },
-    { resource: "Windows", rate: 137.57 },
-    { resource: "Doors", rate: 157.24 },
-    { resource: "Electrical", rate: 108.70 },
-    { resource: "Painting", rate: 244.00 },
-    { resource: "Sanitary", rate: 162.00 },
-    { resource: "Kitchen Work", rate: 150.65 },
+    { resource: "Cement", rate: 280.90 },
+    { resource: "Steel", rate: 260.50 },
+    { resource: "Bricks", rate: 240.00 },
+    { resource: "Aggregate", rate: 160.90 },
+    { resource: "Sand", rate: 188.00 },
+    { resource: "Flooring", rate: 290.00 },
+    { resource: "Windows", rate: 145.00 },
+    { resource: "Doors", rate: 160.00 },
+    { resource: "Electrical", rate: 110.00 },
+    { resource: "Painting", rate: 245.00 },
+    { resource: "Sanitary", rate: 160.00 },
+    { resource: "Kitchen Work", rate: 150. },
     { resource: "Contractor (RCC/Civil)", rate: 310.00 }
 ];
 
