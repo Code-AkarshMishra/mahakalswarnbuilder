@@ -10,18 +10,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Base Rates (Moderate)
 const baseRates = [
-    { resource: "Cement", rate: 280.90 },
-    { resource: "Steel", rate: 260.50 },
+    { resource: "Cement", rate: 280.00 },
+    { resource: "Steel", rate: 260.00 },
     { resource: "Bricks", rate: 240.00 },
-    { resource: "Aggregate", rate: 160.90 },
+    { resource: "Aggregate", rate: 160.00 },
     { resource: "Sand", rate: 188.00 },
     { resource: "Flooring", rate: 290.00 },
     { resource: "Windows", rate: 145.00 },
     { resource: "Doors", rate: 160.00 },
     { resource: "Electrical", rate: 110.00 },
     { resource: "Painting", rate: 245.00 },
-    { resource: "Sanitary", rate: 160.00 },
-    { resource: "Kitchen Work", rate: 150. },
+    { resource: "Sanitary", rate: 60.00 },
+    { resource: "Kitchen Work", rate: 250.00 },
     { resource: "Contractor (RCC/Civil)", rate: 310.00 }
 ];
 
@@ -90,8 +90,8 @@ export default function CostDashboard() {
     // Dynamic Rate Logic
     const getDynamicRates = () => {
         let offset = 0;
-        if (tier === 'Basic') offset = -100 / 13;
-        if (tier === 'Advance') offset = 150 / 13;
+        if (tier === 'Basic') offset = -80 / 13;
+        if (tier === 'Advance') offset = 200 / 13;
         return baseRates.map(r => ({ ...r, rate: r.rate + offset }));
     };
 
@@ -99,20 +99,20 @@ export default function CostDashboard() {
 
     // Tax Calculations
     const subTotal = activeRates.reduce((sum, item) => sum + (item.rate * area), 0);
-    const cgstAmount = subTotal * 0.09;
-    const sgstAmount = subTotal * 0.09;
+    const cgstAmount = subTotal * 0.05;
+    const sgstAmount = subTotal * 0.05;
     const totalCostWithTax = subTotal + cgstAmount + sgstAmount;
 
     // Comparison Rates
     const moderateRatePerSqFt = Math.round(baseRates.reduce((sum, item) => sum + item.rate, 0));
-    const basicRatePerSqFt = moderateRatePerSqFt - 100;
-    const advanceRatePerSqFt = moderateRatePerSqFt + 150;
+    const basicRatePerSqFt = moderateRatePerSqFt - 80;
+    const advanceRatePerSqFt = moderateRatePerSqFt + 200;
 
     // Dynamic Timeline Logic
     const getDynamicTimeline = () => {
         let tierTimeMultiplier = 1.0;
         if (tier === 'Basic') tierTimeMultiplier = 0.85;
-        if (tier === 'Advance') tierTimeMultiplier = 1.30;
+        if (tier === 'Advance') tierTimeMultiplier = 1.50;
         const areaFactor = Math.sqrt(area / 1000);
         return baseTimeline.map(t => ({
             ...t,
@@ -171,7 +171,7 @@ export default function CostDashboard() {
         doc.setTextColor(240, 240, 240);
         doc.setFont("helvetica", "normal");
         doc.setFontSize(9);
-        doc.text("www.www.mahakalswarnbuilder.in", pageWidth - 14, 16, { align: "right" });
+        doc.text("www.mahakalswarnbuilder.in", pageWidth - 14, 16, { align: "right" });
         doc.text("Instagram: @ms_builder_", pageWidth - 14, 22, { align: "right" });
         doc.text("GSTIN: 09XXXXX0000X1Z5", pageWidth - 14, 28, { align: "right" }); // Company GST Add
         doc.text("Contact: +91-8707790653", pageWidth - 14, 34, { align: "right" });
@@ -283,6 +283,7 @@ export default function CostDashboard() {
         doc.text("2. The timeline mentioned above is subject to change depending upon unpredictable weather or site conditions.", 14, termsY + 11);
         doc.text("3. This quotation/estimate is strictly invalid without an official company stamp and an authorized signature.", 14, termsY + 16);
         doc.text("4. All legal disputes are subject to the exclusive jurisdiction of courts located in Lucknow only.", 14, termsY + 21);
+        doc.text("Any work or services not specifically mentioned in the estimate/bill or contract shall be considered additional work and will be charged separately.", 14, termsY + 26);
 
         // ==========================================
         // 5. STAMP & SIGNATURE (PRINTED ON EVERY PAGE)
@@ -320,7 +321,7 @@ export default function CostDashboard() {
             doc.line(14, pageHeight - 12, pageWidth - 14, pageHeight - 12);
             doc.setTextColor(150, 160, 170);
             doc.setFontSize(8).setFont("helvetica", "normal");
-            doc.text("Corporate Addr: Mahakal Swarn Builder,Vibhuti Khand,Gomti Nagar, Lucknow, Uttar Pradesh", 14, pageHeight - 6);
+            doc.text("Corporate Addr: Mahakal Swarn Builder,Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh", 14, pageHeight - 6);
             doc.text(`Page ${i} of ${pageCount}`, pageWidth - 14, pageHeight - 6, { align: "right" });
         }
 
