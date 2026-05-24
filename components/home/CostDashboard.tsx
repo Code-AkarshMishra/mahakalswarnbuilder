@@ -225,8 +225,8 @@ export default function CostDashboard() {
         ]);
 
         tableRows.push(["", "SUBTOTAL ESTIMATE", `Rs. ${subTotal.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`]);
-        tableRows.push(["", "CGST (9%)", `Rs. ${cgstAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`]);
-        tableRows.push(["", "SGST (9%)", `Rs. ${sgstAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`]);
+        tableRows.push(["", "CGST (5%)", `Rs. ${cgstAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`]);
+        tableRows.push(["", "SGST (5%)", `Rs. ${sgstAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`]);
 
         autoTable(doc, {
             startY: 110,
