@@ -3,6 +3,7 @@ import Navbar from "@/components/shared/Navbar";
 import Hero from "@/components/home/Hero";
 import CostDashboard from "@/components/home/CostDashboard";
 import Features from "@/components/home/Features";
+import MahakalLuxuryFloorPlan from "@/components/home/MahakalLuxuryFloorPlan";
 
 import Projects from "@/components/home/Projects";
 import ChatAssistant from "@/components/shared/ChatAssistant";
@@ -32,7 +33,7 @@ export default function Home() {
         <CostDashboard />
       </section>
       <Projects />
-
+      <MahakalLuxuryFloorPlan />
 
       {/* FOUNDER'S VISION SECTION */}
       <section id="about" className="py-20 md:py-32 bg-[#FDFBF7]">
