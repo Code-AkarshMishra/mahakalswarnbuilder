@@ -49,7 +49,6 @@ export default function MahakalLuxuryShowcase() {
 
                 {/* ================= HERO ================= */}
 
-
                 <div className="grid lg:grid-cols-2 gap-14 items-center mb-28">
 
                     {/* IMAGE SECTION */}

@@ -4,7 +4,7 @@ import Hero from "@/components/home/Hero";
 import CostDashboard from "@/components/home/CostDashboard";
 import Features from "@/components/home/Features";
 import MahakalLuxuryFloorPlan from "@/components/home/MahakalLuxuryFloorPlan";
-
+import ModernDesignCollection from "@/components/home/ModernDesignCollection";
 import Projects from "@/components/home/Projects";
 import ChatAssistant from "@/components/shared/ChatAssistant";
 import Footer from "@/components/shared/Footer";
@@ -34,7 +34,7 @@ export default function Home() {
       </section>
       <Projects />
       <MahakalLuxuryFloorPlan />
-
+      <ModernDesignCollection />
       {/* FOUNDER'S VISION SECTION */}
       <section id="about" className="py-20 md:py-32 bg-[#FDFBF7]">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
