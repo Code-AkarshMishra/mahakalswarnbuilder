@@ -11,7 +11,7 @@ export default function Contact() {
                             <div className="p-3 bg-premium-goldLight rounded-full text-premium-gold">
                                 <Phone size={24} />
                             </div>
-                            <p className="text-lg font-medium">+91 87077 90653 | +91 95199 60824</p>
+                            <p className="text-lg font-medium">+91 87077 90653 | +91 9793890653</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="p-3 bg-premium-goldLight rounded-full text-premium-gold">

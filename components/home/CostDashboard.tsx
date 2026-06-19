@@ -173,7 +173,7 @@ export default function CostDashboard() {
         doc.setFontSize(9);
         doc.text("www.mahakalswarnbuilder.in", pageWidth - 14, 16, { align: "right" });
         doc.text("Instagram: @ms_builder_", pageWidth - 14, 22, { align: "right" });
-        doc.text("GSTIN: 09XXXXX0000X1Z5", pageWidth - 14, 28, { align: "right" }); // Company GST Add
+        doc.text("GSTIN: 09CXUPT7007D1ZY", pageWidth - 14, 28, { align: "right" }); // Company GST Add
         doc.text("Contact: +91-8707790653", pageWidth - 14, 34, { align: "right" });
         doc.text("Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh, India", pageWidth - 14, 40, { align: "right" });
 
