@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageSquareText } from "lucide-react";
+import { Phone, Mail, MapPin, MessageSquareText, Receipt } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -54,12 +54,24 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* Business Registration */}
+                <div className="space-y-5">
+                    <h4 className="text-[#D4AF37] font-black uppercase text-xs md:text-sm tracking-[0.2em]">Business Info</h4>
+                    <div className="flex items-start gap-3 font-bold text-gray-300">
+                        <Receipt size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" />
+                        <div className="text-xs md:text-sm">
+                            <p className="text-white/70 uppercase text-[10px] tracking-wider mb-1">GST IN</p>
+                            <p className="text-white font-mono">09CXUPT7007D1ZY</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             {/* Copyright Section (FIX: Centered on mobile so it doesn't collide with the chat bot button) */}
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-8 text-center md:text-left gap-4">
                 <p className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.5em] font-black opacity-60">
-                    © 2026 MAHAKAL SWARN | LEGACY OF ENGINEERING
+                    © 2026 MAHAKAL SWARN
                 </p>
                 <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-black text-[#D4AF37] md:opacity-80">
                     STARTUP EXCELLENCE
