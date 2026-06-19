@@ -28,9 +28,9 @@ export default function Footer() {
                             <span className="text-sm md:text-base whitespace-nowrap">+91 87077 90653</span>
                             <span className="text-[9px] md:text-[10px] bg-white/10 px-2 py-1 rounded whitespace-nowrap">(Call Builder)</span>
                         </a>
-                        <a href="sms:+919519960824" className="flex items-center gap-3 hover:text-[#D4AF37] transition-colors w-fit">
+                        <a href="sms:+919793890653" className="flex items-center gap-3 hover:text-[#D4AF37] transition-colors w-fit">
                             <MessageSquareText size={18} className="text-[#D4AF37] flex-shrink-0" />
-                            <span className="text-sm md:text-base whitespace-nowrap">+91 95199 60824</span>
+                            <span className="text-sm md:text-base whitespace-nowrap">+91 9793890653</span>
                             <span className="text-[9px] md:text-[10px] bg-white/10 px-2 py-1 rounded whitespace-nowrap">(Text Builder)</span>
                         </a>
                         {/* FIX: break-all allows long email to wrap safely if needed on tiny screens */}
