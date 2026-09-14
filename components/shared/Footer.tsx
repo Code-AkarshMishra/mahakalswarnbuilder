@@ -1,4 +1,5 @@
-import { Phone, Mail, MapPin, MessageSquareText, Receipt } from "lucide-react";
+import Link from "next/link";
+import { Phone, Mail, MapPin, MessageSquareText, Receipt, Lock, Compass } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -73,6 +74,22 @@ export default function Footer() {
                 <p className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.5em] font-black opacity-60">
                     © 2026 MAHAKAL SWARN
                 </p>
+                <div className="flex items-center gap-3">
+                    <Link
+                        href="/sitemap"
+                        className="inline-flex items-center gap-1.5 text-[10px] text-gray-400 hover:text-[#D4AF37] transition-colors bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#D4AF37]/40 px-3 py-1 rounded-full font-medium"
+                    >
+                        <Compass size={12} className="text-[#D4AF37]" />
+                        <span>Sitemap</span>
+                    </Link>
+                    <Link
+                        href="/admin"
+                        className="inline-flex items-center gap-1.5 text-[10px] text-gray-400 hover:text-[#D4AF37] transition-colors bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#D4AF37]/40 px-3 py-1 rounded-full font-medium"
+                    >
+                        <Lock size={12} className="text-[#D4AF37]" />
+                        <span>Owner Portal</span>
+                    </Link>
+                </div>
                 <p className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-black text-[#D4AF37] md:opacity-80">
                     STARTUP EXCELLENCE
                 </p>

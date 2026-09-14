@@ -1,0 +1,145 @@
+{
+  "basicRatePerSqFt": 1850,
+  "moderateRatePerSqFt": 1985,
+  "advanceRatePerSqFt": 2150,
+  "materials": [
+    {
+      "resource": "Cement",
+      "rate": 205
+    },
+    {
+      "resource": "Steel",
+      "rate": 190
+    },
+    {
+      "resource": "Bricks",
+      "rate": 175
+    },
+    {
+      "resource": "Aggregate",
+      "rate": 120
+    },
+    {
+      "resource": "Sand",
+      "rate": 140
+    },
+    {
+      "resource": "Flooring",
+      "rate": 215
+    },
+    {
+      "resource": "Windows",
+      "rate": 110
+    },
+    {
+      "resource": "Doors",
+      "rate": 120
+    },
+    {
+      "resource": "Electrical",
+      "rate": 85
+    },
+    {
+      "resource": "Painting",
+      "rate": 180
+    },
+    {
+      "resource": "Sanitary",
+      "rate": 45
+    },
+    {
+      "resource": "Kitchen Work",
+      "rate": 175
+    },
+    {
+      "resource": "Contractor (RCC/Civil)",
+      "rate": 225
+    }
+  ],
+  "timeline": [
+    {
+      "phase": "Home Design & Approval",
+      "days": 46,
+      "color": "bg-yellow-400"
+    },
+    {
+      "phase": "Excavation",
+      "days": 14,
+      "color": "bg-green-600"
+    },
+    {
+      "phase": "Footing & Foundation",
+      "days": 41,
+      "color": "bg-black"
+    },
+    {
+      "phase": "RCC Work - Slabs",
+      "days": 17,
+      "color": "bg-blue-600"
+    },
+    {
+      "phase": "Roof Slab",
+      "days": 37,
+      "color": "bg-red-600"
+    },
+    {
+      "phase": "Brickwork & Plaster",
+      "days": 8,
+      "color": "bg-pink-300"
+    },
+    {
+      "phase": "Flooring & Tiling",
+      "days": 25,
+      "color": "bg-purple-700"
+    },
+    {
+      "phase": "Electric Wiring",
+      "days": 14,
+      "color": "bg-yellow-500"
+    },
+    {
+      "phase": "Plumbing",
+      "days": 30,
+      "color": "bg-gray-500"
+    },
+    {
+      "phase": "Doors & Finishing",
+      "days": 15,
+      "color": "bg-red-800"
+    }
+  ],
+  "packageFeatures": {
+    "basic": [
+      "Standard Grade Cement & TMT Steel",
+      "Standard wiring & plumbing fixtures",
+      "Vitrified Floor Tiles (Standard Grade)",
+      "Structured quality tracking"
+    ],
+    "moderate": [
+      "Premium Brand Cement (UltraTech / ACC)",
+      "Branded concealed wiring (Havells / Polycab)",
+      "Premium Vitrified & Anti-skid tiles",
+      "Standard timeline tracking with Vastu alignment"
+    ],
+    "advance": [
+      "High-Grade Fe550D Steel & Waterproof Cement",
+      "Smart home ready automation & modular switches",
+      "Italian Marble / Imported Wood Finishes",
+      "Detailed 3D laser precision execution"
+    ]
+  },
+  "taxSettings": {
+    "cgstRate": 5,
+    "sgstRate": 5,
+    "enabled": true
+  },
+  "companyInfo": {
+    "phone": "+91 87077 90653",
+    "email": "mahakalswarnbuilder@gmail.com",
+    "address": "Vibhuti Khand, Gomti Nagar, Lucknow, UP",
+    "gstin": "09CXUPT7007D1ZY",
+    "website": "www.mahakalswarnbuilder.in"
+  },
+  "lastUpdated": "2026-09-14T18:36:51.943Z",
+  "updatedBy": "admin"
+}
