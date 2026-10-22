@@ -8,7 +8,7 @@ export async function GET() {
         const rates = await getRatesConfig();
         return NextResponse.json(rates, {
             headers: {
-                "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59"
+                "Cache-Control": "no-store"
             }
         });
     } catch (error) {

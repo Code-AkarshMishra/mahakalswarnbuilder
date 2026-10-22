@@ -4,17 +4,23 @@ import { verifyAdminCredentials, createSessionToken, COOKIE_NAME } from "@/lib/a
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
-        const { username, password } = body;
+        const body: unknown = await request.json();
+        if (!body || typeof body !== "object" || Array.isArray(body)) {
+            return NextResponse.json(
+                { error: "Username and password are required" },
+                { status: 400 }
+            );
+        }
+        const { username, password } = body as { username?: unknown; password?: unknown };
 
-        if (!username || !password) {
+        if (typeof username !== "string" || typeof password !== "string" || !username.trim() || !password.trim()) {
             return NextResponse.json(
                 { error: "Username and password are required" },
                 { status: 400 }
             );
         }
 
-        const isValid = verifyAdminCredentials(username.trim(), password.trim());
+        const isValid = await verifyAdminCredentials(username.trim(), password);
         if (!isValid) {
             return NextResponse.json(
                 { error: "Invalid username or password" },

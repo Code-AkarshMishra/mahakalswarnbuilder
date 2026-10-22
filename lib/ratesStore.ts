@@ -1,12 +1,59 @@
 import fs from "fs";
 import path from "path";
+import initialRates from "@/data/rates.json";
 import { DEFAULT_RATES_CONFIG, RatesConfig } from "./rates-types";
+import { ensureDatabaseSchema, getDatabaseClient } from "./database";
 export { getTierMaterialRates } from "./rates-types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const RATES_FILE = path.join(DATA_DIR, "rates.json");
+const INITIAL_RATES_CONFIG = normalizeRatesConfig(initialRates) ?? DEFAULT_RATES_CONFIG;
 
-let cachedRates: RatesConfig | null = null;
+let cachedLocalRates: RatesConfig | null = null;
+
+function normalizeRatesConfig(value: unknown): RatesConfig | null {
+    let parsed = value;
+
+    if (typeof parsed === "string") {
+        try {
+            parsed = JSON.parse(parsed);
+        } catch {
+            return null;
+        }
+    }
+
+    if (!parsed || typeof parsed !== "object") {
+        return null;
+    }
+
+    const rates = parsed as Partial<RatesConfig>;
+    if (
+        typeof rates.basicRatePerSqFt !== "number" ||
+        typeof rates.moderateRatePerSqFt !== "number" ||
+        typeof rates.advanceRatePerSqFt !== "number" ||
+        !Array.isArray(rates.materials) ||
+        !Array.isArray(rates.timeline)
+    ) {
+        return null;
+    }
+
+    return {
+        ...DEFAULT_RATES_CONFIG,
+        ...rates,
+        packageFeatures: {
+            ...DEFAULT_RATES_CONFIG.packageFeatures,
+            ...(rates.packageFeatures || {})
+        },
+        taxSettings: {
+            ...DEFAULT_RATES_CONFIG.taxSettings,
+            ...(rates.taxSettings || {})
+        },
+        companyInfo: {
+            ...DEFAULT_RATES_CONFIG.companyInfo,
+            ...(rates.companyInfo || {})
+        }
+    };
+}
 
 function ensureDataDirectory(): void {
     if (!fs.existsSync(DATA_DIR)) {
@@ -14,73 +61,84 @@ function ensureDataDirectory(): void {
     }
 }
 
-export async function getRatesConfig(): Promise<RatesConfig> {
-    if (cachedRates) {
-        return cachedRates;
+async function getDatabaseRates(): Promise<RatesConfig> {
+    const sql = getDatabaseClient();
+    if (!sql) {
+        throw new Error("DATABASE_URL is not configured.");
+    }
+
+    await ensureDatabaseSchema(sql);
+    let rows = await sql`SELECT value FROM site_settings WHERE setting_key = 'rates'`;
+
+    if (rows.length === 0) {
+        await sql`
+            INSERT INTO site_settings (setting_key, value)
+            VALUES ('rates', ${JSON.stringify(INITIAL_RATES_CONFIG)}::jsonb)
+            ON CONFLICT (setting_key) DO NOTHING
+        `;
+        rows = await sql`SELECT value FROM site_settings WHERE setting_key = 'rates'`;
+    }
+
+    const rates = normalizeRatesConfig(rows[0]?.value);
+    if (!rates) {
+        throw new Error("The rates settings stored in Neon are invalid.");
+    }
+
+    return rates;
+}
+
+async function getLocalRates(): Promise<RatesConfig> {
+    if (cachedLocalRates) {
+        return cachedLocalRates;
     }
 
     try {
         ensureDataDirectory();
         if (fs.existsSync(RATES_FILE)) {
-            const raw = fs.readFileSync(RATES_FILE, "utf-8");
-            const parsed = JSON.parse(raw) as Partial<RatesConfig>;
-            
-            if (
-                parsed.basicRatePerSqFt &&
-                parsed.moderateRatePerSqFt &&
-                parsed.advanceRatePerSqFt &&
-                Array.isArray(parsed.materials)
-            ) {
-                // Merge with defaults to guarantee all new features exist
-                cachedRates = {
-                    ...DEFAULT_RATES_CONFIG,
-                    ...parsed,
-                    packageFeatures: {
-                        ...DEFAULT_RATES_CONFIG.packageFeatures,
-                        ...(parsed.packageFeatures || {})
-                    },
-                    taxSettings: {
-                        ...DEFAULT_RATES_CONFIG.taxSettings,
-                        ...(parsed.taxSettings || {})
-                    },
-                    companyInfo: {
-                        ...DEFAULT_RATES_CONFIG.companyInfo,
-                        ...(parsed.companyInfo || {})
-                    }
-                };
-                return cachedRates;
+            const rates = normalizeRatesConfig(fs.readFileSync(RATES_FILE, "utf-8"));
+            if (rates) {
+                cachedLocalRates = rates;
+                return rates;
             }
         }
-    } catch (err) {
-        console.error("Error reading rates.json, falling back to default:", err);
+    } catch (error) {
+        console.error("Error reading rates.json:", error);
     }
 
-    cachedRates = { ...DEFAULT_RATES_CONFIG };
-    try {
-        ensureDataDirectory();
-        fs.writeFileSync(RATES_FILE, JSON.stringify(cachedRates, null, 2), "utf-8");
-    } catch (writeErr) {
-        console.error("Failed to seed initial rates.json:", writeErr);
+    cachedLocalRates = INITIAL_RATES_CONFIG;
+    return cachedLocalRates;
+}
+
+export async function getRatesConfig(): Promise<RatesConfig> {
+    if (getDatabaseClient()) {
+        return getDatabaseRates();
     }
 
-    return cachedRates;
+    if (process.env.NODE_ENV === "production") {
+        return INITIAL_RATES_CONFIG;
+    }
+
+    return getLocalRates();
 }
 
 export async function saveRatesConfig(
     updates: Partial<RatesConfig>,
     updatedBy: string = "Admin"
 ): Promise<RatesConfig> {
-    const current = await getRatesConfig();
+    if (!getDatabaseClient() && process.env.NODE_ENV === "production") {
+        throw new Error("Configure DATABASE_URL in Vercel to publish admin changes.");
+    }
 
+    const current = await getRatesConfig();
     const newConfig: RatesConfig = {
         ...current,
         ...updates,
         basicRatePerSqFt: Number(updates.basicRatePerSqFt ?? current.basicRatePerSqFt),
         moderateRatePerSqFt: Number(updates.moderateRatePerSqFt ?? current.moderateRatePerSqFt),
         advanceRatePerSqFt: Number(updates.advanceRatePerSqFt ?? current.advanceRatePerSqFt),
-        materials: updates.materials ? updates.materials.map(m => ({
-            resource: m.resource,
-            rate: Number(m.rate)
+        materials: updates.materials ? updates.materials.map((material) => ({
+            resource: material.resource,
+            rate: Number(material.rate)
         })) : current.materials,
         timeline: updates.timeline ?? current.timeline,
         packageFeatures: updates.packageFeatures ? {
@@ -100,13 +158,24 @@ export async function saveRatesConfig(
         updatedBy
     };
 
+    const sql = getDatabaseClient();
+    if (sql) {
+        await ensureDatabaseSchema(sql);
+        await sql`
+            INSERT INTO site_settings (setting_key, value, updated_at)
+            VALUES ('rates', ${JSON.stringify(newConfig)}::jsonb, NOW())
+            ON CONFLICT (setting_key)
+            DO UPDATE SET value = EXCLUDED.value, updated_at = NOW()
+        `;
+        return newConfig;
+    }
+
     ensureDataDirectory();
     const tempFile = `${RATES_FILE}.tmp`;
     fs.writeFileSync(tempFile, JSON.stringify(newConfig, null, 2), "utf-8");
     fs.renameSync(tempFile, RATES_FILE);
-
-    cachedRates = newConfig;
-    return cachedRates;
+    cachedLocalRates = newConfig;
+    return newConfig;
 }
 
 export async function resetRatesConfig(updatedBy: string = "Admin (Reset)"): Promise<RatesConfig> {
